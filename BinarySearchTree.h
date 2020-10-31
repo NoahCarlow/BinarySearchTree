@@ -194,6 +194,321 @@ void BinarySearchTree::postOrderTreePrint()
    }
  }
 
-///COMPLETE THE REQUIRED FUNCTIONS
- 
+// Tree Traversal printing functions below
+void BinarySearchTree::inOrderTreeWalk(Project * root)
+{
+  if (root != NULL)
+  {
+    inOrderTreeWalk(root->getLeft());
+    cout << root->getProjectName() << endl;
+    cout << root->getRegion() << endl;
+    cout << root->getCost() << endl;
+    inOrderTreeWalk(root->getRight());
+  }
+}
 
+void BinarySearchTree::preOrderTreeWalk(Project * root)
+{
+  if (root != NULL)
+  {
+    cout << root->getProjectName() << endl;
+    cout << root->getRegion() << endl;
+    cout << root->getCost() << endl;
+    preOrderTreeWalk(root->getLeft());
+    preOrderTreeWalk(root->getRight());
+  }
+}
+
+void BinarySearchTree::postOrderTreeWalk(Project * root)
+{
+  if (root != NULL)
+  {
+    postOrderTreeWalk(root->getLeft());
+    postOrderTreeWalk(root->getRight());
+    cout << root->getProjectName() << endl;
+    cout << root->getRegion() << endl;
+    cout << root->getCost() << endl;
+  }
+}
+
+// Tree functions
+
+// insert a node into our binary search tree
+bool BinarySearchTree::treeInsert(string name, string region, int cost)
+{
+  Project* z = new Project(name, region, cost);
+  Project* y = NULL;
+  Project* x = root;
+
+  while (x != NULL)
+  {
+    y = x;
+    if (name.compare(y->getProjectName()) == -1)
+    {
+      x = x->getLeft();
+    }
+    else
+    {
+      x = x->getRight();
+    }
+  }
+  z->setParent(y);
+
+  if (y == NULL)
+  {
+      root = z;
+  }
+  else
+  {
+    if (name.compare(y->getProjectName()) == 1)
+    {
+      y->setLeft(z);
+    }
+    else
+    {
+      y->setRight(z);
+    }
+  }
+  return true;
+}
+
+// rotate the tree to the left
+bool BinarySearchTree::leftRotate(string node)
+{
+  Project* x = treeSearch(node);
+  if (x == NULL)
+  {
+    return false;
+  }
+  Project* y = x->getRight();
+  
+  x->setRight(y->getLeft());
+  if (y->getLeft() != NULL)
+  {
+    y->getLeft()->setParent(x);
+  }
+  y->setParent(x->getParent());
+
+  if (x->getParent() == NULL)
+  {
+    root = y;
+  }
+  else
+  {
+    if (x == x->getParent()->getLeft())
+    {
+      x->getParent()->setLeft(y);
+    }
+    else
+    {
+      x->getParent()->setRight(y);
+    }
+    y->setRight(x);
+    x->setParent(y);
+  }
+  return true;
+}
+
+bool BinarySearchTree::rightRotate(string node)
+{
+  Project* x = treeSearch(node);
+  if (x == NULL)
+  {
+    return false;
+  }
+  Project* y = x->getLeft();
+  
+  x->setLeft(y->getRight());
+  if (y->getRight() != NULL)
+  {
+    y->getRight()->setParent(x);
+  }
+  y->setParent(x->getParent());
+
+  if (x->getParent() == NULL)
+  {
+    root = y;
+  }
+  else
+  {
+    if (x == x->getParent()->getRight())
+    {
+      x->getParent()->setRight(y);
+    }
+    else
+    {
+      x->getParent()->setLeft(y);
+    }
+    y->setLeft(x);
+    x->setParent(y);
+  }
+  return true;
+}
+
+// search for a node in our binary search tree
+Project* BinarySearchTree::treeSearch(string nodeName)
+{
+  Project* x = root;
+  if (root == NULL)
+  {
+    return NULL;
+  }
+  while (x != NULL || x->getProjectName().compare(nodeName) != 0)
+  {
+    if (nodeName.compare(x->getProjectName()) == -1)
+    {
+      if (x->getLeft() == NULL)
+      {
+        return NULL;
+      }
+      x = x->getLeft();
+    }
+    else
+    {
+      if (x->getRight() == NULL)
+      {
+        return NULL;
+      }
+      x = x->getRight();
+    }
+  }
+  return x;
+}
+
+Project* BinarySearchTree::treeSearchNode(Project* node, string nodeName)
+{
+  Project* x = node;
+  if (node == NULL)
+  {
+    return NULL;
+  }
+  while (x != NULL || x->getProjectName().compare(nodeName) != 0)
+  {
+    if (nodeName.compare(x->getProjectName()) == -1)
+    {
+      if (x->getLeft() == NULL)
+      {
+        return NULL;
+      }
+      x = x->getLeft();
+    }
+    else
+    {
+      if (x->getRight() == NULL)
+      {
+        return NULL;
+      }
+      x = x->getRight();
+    }
+  }
+  return x;
+}
+
+// find the tree minimum
+Project* BinarySearchTree::treeMinimum()
+{
+  if (isEmpty())
+  {
+    return NULL;
+  }
+
+  Project* x = root;
+  while(x->getLeft() != NULL)
+  {
+    x = x->getLeft();
+  }
+  return x;
+}
+
+// find the minimum of a specific node
+Project* BinarySearchTree::treeMinimumNode(Project* node)
+{
+  if (isEmpty())
+  {
+    cout << "tree is empty" << endl;
+    return NULL;
+  }
+
+  while(node->getLeft() != NULL)
+  {
+    node = node->getLeft();
+  }
+  return node;
+}
+
+// find the tree maximum
+Project* BinarySearchTree::treeMaximum()
+{
+  if (isEmpty())
+  {
+    return NULL;
+  }
+
+  Project* x = root;
+  while(x->getRight() != NULL)
+  {
+    x = x->getRight();
+  }
+  return x;
+}
+// find the maximum if a specific node
+Project* BinarySearchTree::treeMaximumNode(Project* node)
+{
+  if (isEmpty())
+  {
+    cout << "tree is empty" << endl;
+    return NULL;
+  }
+
+  while(node->getRight() != NULL)
+  {
+    node = node->getRight();
+  }
+  return node;
+}
+
+// finds the nodes successor
+Project* BinarySearchTree::treeSuccessor(string node)
+{
+  Project* x = treeSearchNode(root, node);
+  if (x == NULL)
+  {
+    return NULL;
+  }
+  Project* y;
+
+  if (x->getRight() != NULL)
+  {
+    return treeMinimumNode(x->getRight());
+  }
+  y = x->getParent();
+  while (y != NULL && x == y->getRight())
+  {
+    x = y;
+    y = y->getParent();
+  }
+  return y;
+}
+
+// find the nodes predecessor
+Project* BinarySearchTree::treePredecessor(string node)
+{
+  Project* x = treeSearchNode(root, node);
+  if (x == NULL)
+  {
+    return NULL;
+  }
+  Project* y;
+
+  if (x->getLeft() != NULL)
+  {
+    return treeMinimumNode(x->getLeft());
+  }
+  y = x->getParent();
+  while (y != NULL && x == y->getLeft())
+  {
+    x = y;
+    y = y->getParent();
+  }
+  return y;
+}
