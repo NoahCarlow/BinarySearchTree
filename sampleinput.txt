@@ -1,0 +1,84 @@
+A
+B
+C
+D
+E
+F
+Tax Administration
+G
+Statistical System
+H
+Employment Support
+J
+Urban Development
+K
+Solar Energy
+I
+Real Estate Registration Project - Additional Financing
+Europe and Central Asia
+2400000
+I
+Employment Support Project
+Europe and Central Asia
+100000000
+I
+Inclusive Access and Quality Education project
+East Asia and Pacific
+180000000
+I
+Tax Administration and Statistical System Modernization Project
+Europe and Central Asia
+35000000
+I
+Solar Energy in Local Communities
+Africa
+102000000
+I
+Maldives Urban Development and Resilience Project
+South Asia
+16500000
+I
+Bolivia Urban Resilience
+Latin America and Caribbean
+7000000
+A
+B
+C
+F
+Tax Administration and Statistical System Modernization Project
+G
+Maldives Urban Development and Resilience Project
+D
+E
+H
+Solar Energy in Local Communities
+H
+Water Energy in Local Communities
+I
+Additional Financing for Irrigation and Land Market Development Project
+Europe and Central Asia
+20430000
+I
+Integration of Social Accountability into National and Subnational Systems
+East Asia and Pacific
+1720000
+J
+Real Estate Registration Project - Additional Financing
+J
+Inclusive Access and Quality Education project
+A
+B
+C
+K
+Inclusive Access and Quality Education project
+A
+B
+C
+F
+Additional Financing for Irrigation and Land Market Development Project
+G
+Solar Energy in Local Communities
+D
+E
+Q
+

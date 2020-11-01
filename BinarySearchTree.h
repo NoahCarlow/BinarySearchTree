@@ -195,39 +195,36 @@ void BinarySearchTree::postOrderTreePrint()
  }
 
 // Tree Traversal printing functions below
-void BinarySearchTree::inOrderTreeWalk(Project * root)
+void BinarySearchTree::inOrderTreeWalk(Project * x)
 {
-  if (root != NULL)
+  Project* x = root;
+  if (x != NULL)
   {
-    inOrderTreeWalk(root->getLeft());
-    cout << root->getProjectName() << endl;
-    cout << root->getRegion() << endl;
-    cout << root->getCost() << endl;
-    inOrderTreeWalk(root->getRight());
+    inOrderTreeWalk(x->getLeft());
+    x->print();
+    inOrderTreeWalk(x->getRight());
   }
 }
 
-void BinarySearchTree::preOrderTreeWalk(Project * root)
+void BinarySearchTree::preOrderTreeWalk(Project * x)
 {
-  if (root != NULL)
+  Project* x = root;
+  if (x != NULL)
   {
-    cout << root->getProjectName() << endl;
-    cout << root->getRegion() << endl;
-    cout << root->getCost() << endl;
-    preOrderTreeWalk(root->getLeft());
-    preOrderTreeWalk(root->getRight());
+    x->print();
+    preOrderTreeWalk(x->getLeft());
+    preOrderTreeWalk(x->getRight());
   }
 }
 
-void BinarySearchTree::postOrderTreeWalk(Project * root)
+void BinarySearchTree::postOrderTreeWalk(Project * x)
 {
-  if (root != NULL)
+  Project* x = root;
+  if (x != NULL)
   {
-    postOrderTreeWalk(root->getLeft());
-    postOrderTreeWalk(root->getRight());
-    cout << root->getProjectName() << endl;
-    cout << root->getRegion() << endl;
-    cout << root->getCost() << endl;
+    postOrderTreeWalk(x->getLeft());
+    postOrderTreeWalk(x->getRight());
+    x->print();
   }
 }
 
