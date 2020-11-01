@@ -240,7 +240,7 @@ bool BinarySearchTree::treeInsert(string name, string region, int cost)
   while (x != NULL)
   {
     y = x;
-    if (name.compare(y->getProjectName()) == -1)
+    if (name.compare(y->getProjectName()) == 1)
     {
       x = x->getLeft();
     }
@@ -257,7 +257,7 @@ bool BinarySearchTree::treeInsert(string name, string region, int cost)
   }
   else
   {
-    if (name.compare(y->getProjectName()) == 1)
+    if (name.compare(y->getProjectName()) == -1)
     {
       y->setLeft(z);
     }
@@ -352,7 +352,7 @@ Project* BinarySearchTree::treeSearch(string nodeName)
   }
   while (x != NULL || x->getProjectName().compare(nodeName) != 0)
   {
-    if (nodeName.compare(x->getProjectName()) == -1)
+    if (nodeName.compare(x->getProjectName()) == 1)
     {
       if (x->getLeft() == NULL)
       {
@@ -381,7 +381,7 @@ Project* BinarySearchTree::treeSearchNode(Project* node, string nodeName)
   }
   while (x != NULL || x->getProjectName().compare(nodeName) != 0)
   {
-    if (nodeName.compare(x->getProjectName()) == -1)
+    if (nodeName.compare(x->getProjectName()) == 1)
     {
       if (x->getLeft() == NULL)
       {
