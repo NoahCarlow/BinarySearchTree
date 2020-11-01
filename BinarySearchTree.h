@@ -197,7 +197,6 @@ void BinarySearchTree::postOrderTreePrint()
 // Tree Traversal printing functions below
 void BinarySearchTree::inOrderTreeWalk(Project * x)
 {
-  Project* x = root;
   if (x != NULL)
   {
     inOrderTreeWalk(x->getLeft());
@@ -208,7 +207,6 @@ void BinarySearchTree::inOrderTreeWalk(Project * x)
 
 void BinarySearchTree::preOrderTreeWalk(Project * x)
 {
-  Project* x = root;
   if (x != NULL)
   {
     x->print();
@@ -219,7 +217,6 @@ void BinarySearchTree::preOrderTreeWalk(Project * x)
 
 void BinarySearchTree::postOrderTreeWalk(Project * x)
 {
-  Project* x = root;
   if (x != NULL)
   {
     postOrderTreeWalk(x->getLeft());
