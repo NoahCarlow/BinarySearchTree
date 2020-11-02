@@ -237,7 +237,7 @@ bool BinarySearchTree::treeInsert(string name, string region, int cost)
   while (x != NULL)
   {
     y = x;
-    if (name.compare(y->getProjectName()) > 0)
+    if (name.compare(y->getProjectName()) < 0)
     {
       x = x->getLeft();
     }
