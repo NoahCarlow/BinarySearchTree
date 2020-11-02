@@ -272,6 +272,7 @@ bool BinarySearchTree::leftRotate(string node)
   Project* x = treeSearch(node);
   if (x == NULL)
   {
+    std::cout << "test";
     return false;
   }
   Project* y = x->getRight();
@@ -347,7 +348,7 @@ Project* BinarySearchTree::treeSearch(string nodeName)
   {
     return NULL;
   }
-  while (x != NULL || x->getProjectName().compare(nodeName) != 0)
+  while (x != NULL && x->getProjectName().compare(nodeName) != 0)
   {
     if (nodeName.compare(x->getProjectName()) > 0)
     {
