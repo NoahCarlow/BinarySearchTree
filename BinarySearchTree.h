@@ -301,7 +301,7 @@ bool BinarySearchTree::leftRotate(string node)
     {
       x->getParent()->setRight(y);
     }
-    y->setRight(x);
+    y->setLeft(x);
     x->setParent(y);
   }
   return true;
