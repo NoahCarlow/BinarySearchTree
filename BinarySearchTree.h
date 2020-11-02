@@ -290,16 +290,19 @@ bool BinarySearchTree::leftRotate(string node)
   {
     root = y;
   }
-  else if (x == (x->getParent())->getLeft())
-  {
-    x->getParent()->setRight(y);
-  }
   else
   {
-    x->getParent()->setLeft(y);
+    if (x == x->getParent()->getLeft())
+    {	
+      x->getParent()->setLeft(y);	
+    }	
+    else	
+    {	
+      x->getParent()->setRight(y);	
+    }	
+    y->setLeft(x);	
+    x->setParent(y);
   }
-  y->setLeft(x);
-  x->setParent(y);
   return true;
 }
 
@@ -532,7 +535,7 @@ int BinarySearchTree::postOrderTreeDelete(Project * node)
   {
     postOrderTreeDelete(node->getLeft());
     postOrderTreeDelete(node->getRight());
-    num++;
+    num += 1;
     delete node;
   }
   return num;
