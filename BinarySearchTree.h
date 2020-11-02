@@ -349,7 +349,7 @@ Project* BinarySearchTree::treeSearch(string nodeName)
   }
   while (x != NULL && x->getProjectName().compare(nodeName) != 0)
   {
-    if (nodeName.compare(x->getProjectName()) > 0)
+    if (nodeName.compare(x->getProjectName()) < 0)
     {
       if (x->getLeft() == NULL)
       {
@@ -378,7 +378,7 @@ Project* BinarySearchTree::treeSearchNode(Project* node, string nodeName)
   }
   while (x != NULL && x->getProjectName().compare(nodeName) != 0)
   {
-    if (nodeName.compare(x->getProjectName()) > 0)
+    if (nodeName.compare(x->getProjectName()) < 0)
     {
       if (x->getLeft() == NULL)
       {
