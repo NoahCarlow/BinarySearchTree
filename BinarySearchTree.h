@@ -142,8 +142,7 @@ BinarySearchTree::BinarySearchTree()
 //where X is the number of nodes deleted
 BinarySearchTree::~BinarySearchTree()
  {
-   //TO BE COMPLETED
-
+   std::cout << "The number of nodes deleted: " << postOrderTreeDelete(root) << std::endl;
  }
 
 //Checks if the tree is empty
@@ -521,4 +520,20 @@ Project* BinarySearchTree::treePredecessor(string node)
     }
     return y;
   }
+}
+
+// deletes the binary search tree
+// adopted from https://stackoverflow.com/questions/34170164/destructor-for-binary-search-tree
+int BinarySearchTree::postOrderTreeDelete(Project * node)
+{
+  // number of deleted projects
+  int num = 0;
+  if (node)
+  {
+    postOrderTreeDelete(node->getLeft());
+    postOrderTreeDelete(node->getRight());
+    num++;
+    delete node;
+  }
+  return num;
 }
