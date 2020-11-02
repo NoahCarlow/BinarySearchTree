@@ -291,19 +291,16 @@ bool BinarySearchTree::leftRotate(string node)
   {
     root = y;
   }
+  else if (x == (x->getParent())->getLeft())
+  {
+    x->getParent()->setRight(y);
+  }
   else
   {
-    if (x == x->getParent()->getLeft())
-    {
-      x->getParent()->setLeft(y);
-    }
-    else
-    {
-      x->getParent()->setRight(y);
-    }
-    y->setLeft(x);
-    x->setParent(y);
+    x->getParent()->setLeft(y);
   }
+  y->setLeft(x);
+  x->setParent(y);
   return true;
 }
 
@@ -335,13 +332,13 @@ bool BinarySearchTree::rightRotate(string node)
   {
     x->getParent()->setRight(y);
   }
-    else
-    {
-      x->getParent()->setLeft(y);
-    }
-    y->setRight(x);
-    x->setParent(y);
-    return true;
+  else
+  {
+    x->getParent()->setLeft(y);
+  }
+  y->setRight(x);
+  x->setParent(y);
+  return true;
 }
 
 // search for a node in our binary search tree
