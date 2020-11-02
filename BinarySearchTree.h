@@ -477,6 +477,10 @@ Project* BinarySearchTree::treeSuccessor(string node)
   }
   else
   {
+    if (x->getParent() == NULL)
+    {
+      return NULL;
+    }
     y = x->getParent();
     while (y != NULL && x == y->getRight())
     {
@@ -503,6 +507,10 @@ Project* BinarySearchTree::treePredecessor(string node)
   }
   else
   {
+    if (x->getParent() == NULL)
+    {
+      return NULL;
+    }
     y = x->getParent();
     while (y != NULL && x == y->getLeft())
     {
