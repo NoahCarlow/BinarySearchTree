@@ -272,7 +272,6 @@ bool BinarySearchTree::leftRotate(string node)
   Project* x = treeSearch(node);
   if (x == NULL)
   {
-    std::cout << "test";
     return false;
   }
   Project* y = x->getRight();
@@ -465,45 +464,51 @@ Project* BinarySearchTree::treeMaximumNode(Project* node)
 // finds the nodes successor
 Project* BinarySearchTree::treeSuccessor(string node)
 {
-  Project* x = treeSearchNode(root, node);
+  Project* x = treeSearch(node);
   if (x == NULL)
   {
     return NULL;
   }
-  Project* y;
+  Project* y = NULL;
 
   if (x->getRight() != NULL)
   {
     return treeMinimumNode(x->getRight());
   }
-  y = x->getParent();
-  while (y != NULL && x == y->getRight())
+  else
   {
-    x = y;
-    y = y->getParent();
+    y = x->getParent();
+    while (y != NULL && x == y->getRight())
+    {
+      x = y;
+      y = y->getParent();
+    }
+    return y;
   }
-  return y;
 }
 
 // find the nodes predecessor
 Project* BinarySearchTree::treePredecessor(string node)
 {
-  Project* x = treeSearchNode(root, node);
+  Project* x = treeSearch(node);
   if (x == NULL)
   {
     return NULL;
   }
-  Project* y;
+  Project* y = NULL;
 
   if (x->getLeft() != NULL)
   {
-    return treeMinimumNode(x->getLeft());
+    return treeMaximumNode(x->getLeft());
   }
-  y = x->getParent();
-  while (y != NULL && x == y->getLeft())
+  else
   {
-    x = y;
-    y = y->getParent();
+    y = x->getParent();
+    while (y != NULL && x == y->getLeft())
+    {
+      x = y;
+      y = y->getParent();
+    }
+    return y;
   }
-  return y;
 }
