@@ -310,7 +310,7 @@ bool BinarySearchTree::leftRotate(string node)
 bool BinarySearchTree::rightRotate(string node)
 {
   Project* x = treeSearch(node);
-  std::cout << "PROJECT: " << x->getProjectName << std::endl;
+  std::cout << "PROJECT: " << x->getProjectName() << std::endl;
   if (x == NULL)
   {
     return false;
