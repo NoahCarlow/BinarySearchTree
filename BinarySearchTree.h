@@ -275,6 +275,10 @@ bool BinarySearchTree::leftRotate(string node)
     return false;
   }
   Project* y = x->getRight();
+  if (y == NULL)
+  {
+    return false;
+  }
   
   x->setRight(y->getLeft());
   if (y->getLeft() != NULL)
@@ -311,7 +315,11 @@ bool BinarySearchTree::rightRotate(string node)
     return false;
   }
   Project* y = x->getLeft();
-  
+  if (y == NULL)
+  {
+    return false;
+  }
+
   x->setLeft(y->getRight());
   if (y->getRight() != NULL)
   {
