@@ -1,13 +1,15 @@
 // Assignment #6
 // Name: Noah Carlow
 // ASU Email Address: ncarlow2@asu.edu
-// Description: To be completed
+// Description: Implementation of a binary search tree sorted by project name in alphabetical order
+// this program allows for insertion, rotation, min, max, and printing functions.
 
 #include <iostream> //to use cout
 #include <string> //to use strings
 #include <cstdlib> //to use atoi
 
 using namespace std;
+int num = 0; // used to keep track of num of deleted projects
 
 //Project represents some project information
 class Project
@@ -236,7 +238,7 @@ bool BinarySearchTree::treeInsert(string name, string region, int cost)
   while (x != NULL)
   {
     y = x;
-    if (name.compare(y->getProjectName()) < 0)
+    if (name.compare(y->getProjectName()) < 0) // insert name is less than next name alphabetically
     {
       x = x->getLeft();
     }
@@ -253,7 +255,7 @@ bool BinarySearchTree::treeInsert(string name, string region, int cost)
   }
   else
   {
-    if (name.compare(y->getProjectName()) < 0)
+    if (name.compare(y->getProjectName()) < 0) // insert name is greater than next name alphabetically
     {
       y->setLeft(z);
     }
@@ -268,17 +270,20 @@ bool BinarySearchTree::treeInsert(string name, string region, int cost)
 // rotate the tree to the left
 bool BinarySearchTree::leftRotate(string node)
 {
+  // search for the node to be rotated around
   Project* x = treeSearch(node);
+  // check if the node exists
   if (x == NULL)
   {
     return false;
   }
   Project* y = x->getRight();
+  // check if the node has a right child
   if (y == NULL)
   {
     return false;
   }
-  
+  // begin rotation steps
   x->setRight(y->getLeft());
   if (y->getLeft() != NULL)
   {
@@ -308,17 +313,20 @@ bool BinarySearchTree::leftRotate(string node)
 
 bool BinarySearchTree::rightRotate(string node)
 {
+  // search for the node to be rotated around
   Project* x = treeSearch(node);
+  // check if the node exists
   if (x == NULL)
   {
     return false;
   }
   Project* y = x->getLeft();
+  //check if the node has a left child
   if (y == NULL)
   {
     return false;
   }
-
+  // being rotation steps
   x->setLeft(y->getRight());
   if (y->getRight() != NULL)
   {
@@ -347,10 +355,12 @@ bool BinarySearchTree::rightRotate(string node)
 Project* BinarySearchTree::treeSearch(string nodeName)
 {
   Project* x = root;
+  // check if the tree is empty
   if (root == NULL)
   {
     return NULL;
   }
+  // begin search steps
   while (x != NULL && x->getProjectName().compare(nodeName) != 0)
   {
     if (nodeName.compare(x->getProjectName()) < 0)
@@ -376,10 +386,12 @@ Project* BinarySearchTree::treeSearch(string nodeName)
 Project* BinarySearchTree::treeSearchNode(Project* node, string nodeName)
 {
   Project* x = node;
+  // checks if the node is empty
   if (node == NULL)
   {
     return NULL;
   }
+  // begin search steps
   while (x != NULL && x->getProjectName().compare(nodeName) != 0)
   {
     if (nodeName.compare(x->getProjectName()) < 0)
@@ -469,12 +481,13 @@ Project* BinarySearchTree::treeMaximumNode(Project* node)
 Project* BinarySearchTree::treeSuccessor(string node)
 {
   Project* x = treeSearch(node);
+  // checks if the node exists
   if (x == NULL)
   {
     return NULL;
   }
   Project* y = NULL;
-
+  // begin successor steps
   if (x->getRight() != NULL)
   {
     return treeMinimumNode(x->getRight());
@@ -499,12 +512,13 @@ Project* BinarySearchTree::treeSuccessor(string node)
 Project* BinarySearchTree::treePredecessor(string node)
 {
   Project* x = treeSearch(node);
+  // checks if the node exists
   if (x == NULL)
   {
     return NULL;
   }
   Project* y = NULL;
-
+  // being predecessor steps
   if (x->getLeft() != NULL)
   {
     return treeMaximumNode(x->getLeft());
@@ -530,12 +544,11 @@ Project* BinarySearchTree::treePredecessor(string node)
 int BinarySearchTree::postOrderTreeDelete(Project * node)
 {
   // number of deleted projects
-  int num = 0;
   if (node)
   {
     postOrderTreeDelete(node->getLeft());
     postOrderTreeDelete(node->getRight());
-    num += 1;
+    num++;
     delete node;
   }
   return num;
